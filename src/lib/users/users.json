@@ -1,0 +1,45 @@
+{
+    "root": {
+        "is_root": true,
+        "config": {},
+        "desktop": {
+            "background": {
+                "color": "#000000",
+                "image": ""
+            },
+            "files": [
+                {
+                    "name": "test",
+                    "type": "txt",
+                    "customIcon": false,
+                    "customIconPath": "/src/components/style/icons/text_icon.png",
+                    "fileContent": "You opened a file!"
+                },
+                {
+                    "name": "test2",
+                    "type": "txt",
+                    "customIcon": false,
+                    "customIconPath": "",
+                    "fileContent": ""
+                },
+                {
+                    "name": "test3",
+                    "type": "exe",
+                    "fileContent": ""
+                },
+                {
+                    "name": "test4",
+                    "type": "file",
+                    "fileContent": "A file without extension!"
+                }
+            ]
+        }
+    },
+    "user": {
+        "is_root": false,
+        "config": {},
+        "desktop": {
+            "files": [{}]
+        }
+    }
+}
