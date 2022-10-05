@@ -2,17 +2,19 @@ import { useState } from "react";
 import "./Desktop.scss";
 import icons from "./icons";
 import users from "../lib/users/users.json";
-import FileContentModal from "./FileContentModal";
 
 function Desktop() {
-    const [showModal, setShowModal] = useState(false);
-    const [activeFile, setActiveFile] = useState("none");
+    const [activeFile, setActiveFile] = useState(null);
+    const [fileAction, setFileAction] = useState(null);
+    const [fileEdit, setFileEdit] = useState(false);
 
     let fileList = [];
-    const userFiles = users.root.desktop.files;
+    // Dev!
+    const activeUser = users.root;
+    const userFiles = activeUser.desktop.files;
 
     function configureFileList(filesArray) {
-        // Reset file list
+        // Reset file list on render.
         fileList = [];
 
         filesArray.forEach((details) => {
@@ -44,7 +46,11 @@ function Desktop() {
 
             let fileElement = (
                 <>
-                    <button className="file" onClick={fileExecute}>
+                    <button
+                        className="file"
+                        onClick={fileExecution}
+                        onContextMenu={fileExecution}
+                    >
                         <img
                             data-filetype={details.type}
                             data-filename={details.name}
@@ -58,12 +64,12 @@ function Desktop() {
                         className="file-name"
                         // TODO: Finish UI for re-naming files. Span HTML on click
                         // should turn into an input on focus, and back to
-                        // text on blur. Also change data in json file aswell.
+                        // text on blur. Also change data in json file
+                        // aswell on change "submit".
                         onClick={(e) => console.log(e.currentTarget.innerHTML)}
                     >
                         {fullFileName}
                     </span>
-                    {/* <FileContentModal /> */}
                 </>
             );
 
@@ -71,13 +77,80 @@ function Desktop() {
         });
     }
 
-    // function fileInput() {
-    //     return <input />;
-    // }
+    function FileContentModal({ fileData }) {
+        return (
+            <div className="fileModal">
+                <div
+                    className="fileModal-bar"
+                    onClick={() => {
+                        setFileAction((prev) => (prev = null));
+                        setFileEdit((prev) => (prev = false));
+                        setActiveFile((prev) => (prev = null));
+                    }}
+                >
+                    X
+                </div>
+                <div
+                    className={
+                        fileEdit
+                            ? "fileModal-content fileModal-content-edit"
+                            : "fileModal-content fileModal-content-preview"
+                    }
+                >
+                    {fileData !== null ? (
+                        <>
+                            {fileEdit ? (
+                                <>
+                                    <label>
+                                        {`File name: ${fileData.fileName}`}
+                                        <input />
+                                    </label>
+                                    <label>
+                                        {`File type: ${fileData.fileType}`}
+                                        <input />
+                                    </label>
+                                    <label>
+                                        File content:
+                                        <textarea
+                                            defaultValue={fileData.fileContent}
+                                        />
+                                    </label>
+                                    {/* TODO: Add file saving function */}
+                                    <button>Save</button>
+                                </>
+                            ) : (
+                                <></>
+                            )}
+                            {fileAction === "preview" ? (
+                                <>
+                                    <h2>
+                                        {fileData.fileType === "file" ? (
+                                            <>{fileData.fileName}</>
+                                        ) : (
+                                            <>
+                                                {fileData.fileName}.
+                                                {fileData.fileType}
+                                            </>
+                                        )}
+                                    </h2>
+                                    <p>{fileData.fileContent}</p>
+                                </>
+                            ) : (
+                                <></>
+                            )}
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                </div>
+            </div>
+        );
+    }
 
-    function fileExecute(e) {
+    function fileExecution(e) {
+        e.preventDefault();
+
         const buttonElem = e.currentTarget;
-        // const buttonDiv = buttonElem.querySelector("div");
         const buttonDiv = buttonElem.firstChild;
         const fileData = {
             fileName: buttonDiv.dataset.filename,
@@ -85,12 +158,22 @@ function Desktop() {
             fileContent: buttonDiv.dataset.filecontent,
         };
 
-        // console.log(fileContent);
-        // fileContentModal(fileData);
+        // Reset previous file modes
+        setActiveFile((prev) => (prev = null));
+        setFileEdit((prev) => (prev = false));
+        setFileAction((prev) => (prev = null));
 
-        // console.log(buttonDiv.dataset.filename);
-        // console.log(buttonDiv.dataset.filetype);
-        // console.log(buttonDiv.dataset.filecontent);
+        // Left click
+        if (e.button === 0) {
+            setActiveFile((prev) => (prev = fileData));
+            setFileAction((prev) => (prev = "preview"));
+        }
+
+        // Right click
+        if (e.button === 2) {
+            setActiveFile((prev) => (prev = fileData));
+            setFileEdit((prev) => (prev = true));
+        }
     }
 
     function DesktopFiles() {
@@ -98,7 +181,8 @@ function Desktop() {
 
         const renderFiles = fileList.map((fileElement, index) => (
             // Key is file name, can not have identical file names
-            // Note: Or cannot have identical name and file extension. This is TODO.
+            // Note: Or cannot have identical name and file extension,
+            // this is TODO.
             <div className="file-container" key={index}>
                 {fileElement}
             </div>
@@ -107,21 +191,16 @@ function Desktop() {
     }
 
     return (
-        <>
-            <div id="root">
-                <div id="desktop">
-                    <DesktopFiles />
-                </div>
-                <FileContentModal
-                    style={
-                        showModal
-                            ? { display: "visible" }
-                            : { display: "hidden" }
-                    }
-                    fileData={activeFile}
-                />
+        <div id="root">
+            <div id="desktop">
+                <DesktopFiles />
             </div>
-        </>
+            {fileEdit || fileAction !== null ? (
+                <FileContentModal fileData={activeFile} />
+            ) : (
+                <></>
+            )}
+        </div>
     );
 }
 

@@ -30,7 +30,12 @@
                 {
                     "name": "test4",
                     "type": "file",
-                    "fileContent": "A file without extension!"
+                    "fileContent": "A file without extension! (Should be treated as file)"
+                },
+                {
+                    "name": "test5",
+                    "type": "txt",
+                    "fileContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea nihil exercitationem eos voluptatum id quas tenetur tempore, sed temporibus unde rem quasi! Totam dolores natus accusamus voluptas voluptate, quia tempora pariatur est distinctio reiciendis ducimus ad odio dolorem dolore quis! Nisi ex unde est numquam! Quam voluptatem eum recusandae cupiditate saepe quasi unde aliquam excepturi quae sint vitae magnam, natus necessitatibus autem, ipsum quibusdam aliquid delectus vel illo? Voluptatum quidem, ipsam nisi quo culpa voluptatibus esse amet dignissimos similique facilis ratione sequi ipsum dolore illum accusantium repellat minima libero repellendus iste vitae minus voluptates, ullam officiis quisquam? Fugiat soluta quis error perferendis, doloremque quaerat deleniti, necessitatibus at pariatur dolor quia repellendus. Laboriosam magnam voluptates aut nemo sequi sapiente rem ratione officiis aspernatur maxime, consequuntur, et similique animi illo provident impedit doloremque maiores vero, praesentium quibusdam. Excepturi quae, sit saepe quasi nulla magnam atque, voluptatem tempora, quas delectus ullam. Ea, quisquam velit! Modi dicta libero cupiditate quidem itaque porro architecto voluptates officiis illo sunt nemo tempore exercitationem sapiente laboriosam animi quos fuga amet ullam unde placeat laudantium saepe, explicabo nisi. Exercitationem voluptates placeat fugit eos quasi? Molestias dolore praesentium debitis exercitationem nostrum error corporis! Est voluptatibus harum ad magni sint assumenda?"
                 }
             ]
         }
