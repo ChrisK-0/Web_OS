@@ -1,5 +1,6 @@
 {
     "name": "web_os",
+    "author": "Chris K",
     "version": "0.0.1",
     "private": true,
     "dependencies": {

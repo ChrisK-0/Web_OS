@@ -1,7 +1,7 @@
 # About this project
 
 Personal project for fun and self education.
-This project is currently WIP.
+This project is currently WIP. Developed in React.
 
 ### Todo
 
