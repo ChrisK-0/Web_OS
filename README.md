@@ -8,6 +8,10 @@ This project is currently WIP. Developed in React.
 -   [ ] Make and properly use coloring variables through files
 -   [ ] Make file preview mode for txt files and execution mode for exe files
 
+### Considerations
+
+-   [ ] Learn HTML element dragging and make file modal draggable, potentially making way for multiple file modals
+
 # React Default Readme
 
 ### `npm start`
