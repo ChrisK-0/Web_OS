@@ -3,6 +3,10 @@
 Personal project for fun and self education.
 This project is currently WIP. Developed in React.
 
+### Notes
+
+Preview currently mixed between file content view and file execution.
+
 ### Todo
 
 -   [ ] Make and properly use coloring variables through files
