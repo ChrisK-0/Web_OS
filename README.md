@@ -6,6 +6,7 @@ This project is currently WIP. Developed in React.
 ### Todo
 
 -   [ ] Make and properly use coloring variables through files
+-   [ ] Make file preview mode for txt files and execution mode for exe files
 
 # React Default Readme
 
