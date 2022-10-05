@@ -10,7 +10,8 @@ Preview currently mixed between file content view and file execution.
 ### Todo
 
 -   [ ] Make and properly use coloring variables through files
--   [ ] Make file preview mode for txt files and execution mode for exe files
+-   [x] Make file preview mode for txt files
+-   [ ] Make file execution mode for for exe files
 
 ### Considerations
 
